@@ -57,7 +57,7 @@ export default function PhysicsCard({
               {simulation}
             </div>
           </div>
-          <p className="text-xs text-gray-500 italic">Elemento de Apoyo: {visualLabel}</p>
+          <p className="text-xs text-gray-500 italic">Simulación: {visualLabel}</p>
         </div>
       </div>
     </div>

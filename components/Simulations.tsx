@@ -3,21 +3,33 @@
 import { motion } from "framer-motion";
 
 export const Simulation3D = () => (
-  <div className="relative w-full h-full flex items-center justify-center">
-    {[...Array(6)].map((_, i) => (
+  <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+    {[...Array(8)].map((_, i) => (
       <motion.div
         key={i}
-        className="absolute w-4 h-4 bg-blue-500/40 rounded-full blur-sm"
+        className="absolute w-3 h-3 bg-blue-500/60 rounded-full blur-[2px]"
         animate={{
-          x: [0, 40, -40, 0],
-          y: [0, -40, 40, 0],
-          z: [0, 20, -20, 0],
+          x: [
+            (i % 2 === 0 ? 1 : -1) * (20 + i * 5), 
+            (i % 2 === 0 ? -1 : 1) * (30 + i * 2), 
+            (i % 2 === 0 ? 1 : -1) * (20 + i * 5)
+          ],
+          y: [
+            (i % 3 === 0 ? 1 : -1) * (30 - i * 3), 
+            (i % 3 === 0 ? -1 : 1) * (10 + i * 4), 
+            (i % 3 === 0 ? 1 : -1) * (30 - i * 3)
+          ],
+          scale: [1, 1.3, 1],
+          opacity: [0.4, 0.8, 0.4]
         }}
-        transition={{ duration: 5 + i, repeat: Infinity, ease: "linear" }}
-        style={{ perspective: 1000 }}
+        transition={{ 
+          duration: 4 + i, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
       />
     ))}
-    <div className="text-[10px] text-gray-500 uppercase tracking-widest mt-32">Niebla Volumétrica</div>
+    <div className="absolute text-[10px] text-gray-500 uppercase tracking-widest mt-40">Niebla Volumétrica 3D</div>
   </div>
 );
 
