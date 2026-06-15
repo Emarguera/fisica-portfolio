@@ -10,79 +10,79 @@ const content = {
     "Movimiento 3D": {
       title: "Cinemática 3D: Niebla Volumétrica",
       caseStudy: "En motores gráficos como Unreal Engine, la niebla no es una imagen plana, sino un volumen compuesto por partículas. El software debe calcular la posición exacta de cada partícula de agua o polvo en un espacio de tres ejes (X, Y, Z) para que la luz se disperse correctamente. Si un personaje camina a través de ella, el software recalcula los vectores de posición para desplazar la niebla de forma realista.",
-      concept: "El movimiento en tres dimensiones describe la posición de un objeto usando un vector de posición 'r'. La fórmula r = xî + yĵ + zk utiliza 'î, ĵ, k' para representar las direcciones en los ejes X, Y y Z. Cada componente (x, y, z) es una coordenada que cambia con el tiempo para definir el desplazamiento.",
+      concept: "El movimiento en tres dimensiones describe la ubicación de un objeto mediante un vector de posición 'r'. La fórmula r = xî + yĵ + zk utiliza vectores unitarios 'î, ĵ, k' para definir las direcciones en los ejes X, Y y Z. Cada componente (x, y, z) representa una coordenada escalar que varía en el tiempo, permitiendo definir desplazamientos complejos en el espacio virtual.",
       equation: "r(t) = x(t)î + y(t)ĵ + z(t)k",
-      justification: "Sin el cálculo de vectores en 3D, los entornos virtuales carecerían de profundidad. La cinemática permite que el software simule la tridimensionalidad del mundo real, logrando que objetos como la niebla reaccionen a la iluminación y al movimiento del jugador de manera coherente.",
-      visualLabel: "Simulación: Partículas moviéndose aleatoriamente en tres ejes, simulando la dispersión de un fluido gaseoso.",
+      justification: "Sin el cálculo de vectores en 3D, los entornos virtuales carecerían de profundidad real. La cinemática vectorial permite que el software simule la tridimensionalidad, logrando que objetos como la niebla reaccionen a la iluminación y al movimiento del usuario de manera coherente y físicamente precisa.",
+      visualLabel: "Partículas moviéndose aleatoriamente en tres ejes, ilustrando la dispersión de un fluido en un entorno tridimensional.",
       simulation: <Simulations.Simulation3D />
     },
     "MCU": {
       title: "MCU: Velocidad de Giro en Discos HDD",
       caseStudy: "Los discos duros mecánicos graban datos en sectores que rotan a miles de revoluciones por minuto. El software del controlador del disco debe sincronizar el momento exacto en que el cabezal baja a leer, basándose en qué tan rápido está girando el plato. Si la velocidad de giro varía, el software debe compensarlo para no leer el sector equivocado.",
-      concept: "El Movimiento Circular Uniforme (MCU) describe un objeto que recorre una trayectoria circular a una velocidad angular (ω) constante. La fórmula v = ω · R relaciona la velocidad lineal (v) con la velocidad angular y el radio (R). Aquí, 'v' es la rapidez con la que un punto del disco pasa bajo el cabezal.",
-      equation: "v = ω · R (Donde ω = rad/s)",
-      justification: "El MCU es fundamental para la integridad de los datos. Permite al software predecir la posición temporal de un bit de información. Sin esta ley física, el acceso a la información sería caótico, ya que el sistema no tendría una referencia temporal fija para la rotación del hardware.",
-      visualLabel: "Simulación: Un plato girando a velocidad angular constante, destacando un punto (sector de datos) en rotación.",
+      concept: "El Movimiento Circular Uniforme (MCU) ocurre cuando un objeto recorre una trayectoria circular con una rapidez constante. La fórmula v = ω · R relaciona la velocidad lineal (v) con la velocidad angular (ω), expresada en radianes por segundo (rad/s), y el radio (R) de la trayectoria. Aquí, 'v' determina la velocidad con la que un bit de datos pasa bajo el cabezal de lectura.",
+      equation: "v = ω · R (ω en rad/s)",
+      justification: "El MCU es crítico para la integridad de los datos en hardware rotativo. Permite al software predecir la posición exacta de un sector de información en el tiempo. Sin esta ley física, el acceso a la información sería imposible, ya que el sistema no tendría una referencia temporal precisa sobre la rotación del disco.",
+      visualLabel: "Un plato girando a velocidad angular constante, destacando la trayectoria circular de un bit de datos específico.",
       simulation: <Simulations.SimulationMCU />
     }
   },
   "Semana 3": {
     "F. Centrípeta": {
       title: "Dinámica: Estabilidad en Curvas de Drones",
-      caseStudy: "Cuando un dron autónomo realiza un giro para evitar un obstáculo, el software debe inclinar el chasis del dron. Esta inclinación redirige parte del empuje de los motores hacia el centro de la curva, generando la fuerza necesaria para que el dron no siga recto por inercia y se salga de su trayectoria.",
-      concept: "La Fuerza Centrípeta (Fc) es la fuerza resultante que actúa sobre un cuerpo en movimiento circular, dirigida hacia el centro. Se calcula como Fc = m · v² / r, donde 'm' es la masa, 'v' la velocidad y 'r' el radio de giro. Es la fuerza que 'tira' del dron hacia adentro de la curva.",
+      caseStudy: "Cuando un dron autónomo realiza un giro para evitar un obstáculo, el software debe inclinar su chasis. Esta inclinación redirige parte del empuje de los motores hacia el centro de la curva, generando la fuerza necesaria para que el dron no siga recto por inercia y se mantenga dentro de su ruta de navegación planeada.",
+      concept: "La Fuerza Centrípeta (Fc) es la fuerza neta que actúa sobre un cuerpo en movimiento circular, dirigida siempre hacia el centro de la trayectoria. Se calcula como Fc = m · v² / r, donde 'm' es la masa, 'v' la rapidez tangencial y 'r' el radio de curvatura. Es la responsable de 'vencer' la inercia que empujaría al dron hacia fuera del giro.",
       equation: "Fc = m · v² / r",
-      justification: "La física resuelve el problema del control de trayectoria. Si el software no calculara la Fc necesaria basándose en la velocidad y el radio del giro, el dron derraparía en el aire, siendo incapaz de seguir rutas precisas en entornos urbanos o cerrados.",
-      visualLabel: "Simulación: Un objeto en órbita con una flecha central que representa la fuerza constante que lo mantiene en su ruta.",
+      justification: "La física resuelve el control de trayectoria autónoma. Si el software no calculara la Fc necesaria basándose en la masa del dron y la velocidad del aire, el dispositivo derraparía, siendo incapaz de seguir rutas precisas o de maniobrar de forma segura en espacios reducidos.",
+      visualLabel: "Un dron en trayectoria curva con un vector de fuerza (Fc) constante apuntando hacia el centro de rotación.",
       simulation: <Simulations.SimulationCentripetal />
     },
     "Fricción": {
       title: "Fricción: Inercia de Frenado en UI",
-      caseStudy: "En las interfaces móviles, el 'scroll' imita el comportamiento de un objeto real deslizándose sobre una mesa. Cuando lanzas una lista de contactos hacia arriba, el software aplica un algoritmo de fricción que reduce la velocidad gradualmente hasta detenerla, evitando un paro brusco que resultaría molesto al ojo humano.",
-      concept: "La Fricción Cinética (fk) es la fuerza que se opone al movimiento de un objeto que ya se está deslizando. Se define como fk = μk · N, donde 'μk' es el coeficiente de roce y 'N' la fuerza normal. En software, μk determina qué tan 'pesada' o 'lisa' se siente la interfaz al tacto.",
+      caseStudy: "En las interfaces móviles, el 'scroll' imita el roce de un objeto real deslizándose sobre una superficie física. Al lanzar una lista de contactos, el software aplica un algoritmo de fricción que reduce la velocidad gradualmente, logrando una desaceleración natural que evita un paro brusco visualmente agresivo.",
+      concept: "La Fricción Cinética (fk) es la fuerza que se opone al movimiento de un objeto en deslizamiento. Se define por fk = μk · N, donde 'μk' es el coeficiente de fricción cinética (que define la aspereza de la superficie simulada) y 'N' es la fuerza normal. En software, este valor determina qué tan 'fluida' o 'pesada' se percibe la navegación táctil.",
       equation: "f_k = μ_k · N",
-      justification: "La fricción simulada humaniza la tecnología. Al aplicar leyes físicas de roce, el software logra que la interacción sea predecible y cómoda. Sin esto, las listas de datos se detendrían instantáneamente, rompiendo la ilusión de fluidez y naturalidad táctil.",
-      visualLabel: "Simulación: Un bloque deslizándose sobre una superficie que pierde velocidad progresivamente hasta detenerse.",
+      justification: "La fricción simulada mejora la experiencia de usuario (UX). Al aplicar leyes físicas de rozamiento, el software crea una interacción predecible y orgánica. Sin esto, los elementos de la interfaz se detendrían de forma artificial, rompiendo la sensación de manipulación directa del contenido.",
+      visualLabel: "Un bloque deslizándose que experimenta una fuerza de fricción opuesta, resultando en una desaceleración uniforme.",
       simulation: <Simulations.SimulationFriction />
     }
   },
   "Semana 4": {
     "Trabajo": {
       title: "Trabajo: Gestión de Carga en CPUs",
-      caseStudy: "El Sistema Operativo monitorea el gasto energético de cada aplicación. Si un software de edición de fotos aplica un filtro a millones de píxeles, el SO calcula el 'trabajo' de cómputo para decidir si activa los ventiladores o reduce la potencia del chip para evitar daños por calor.",
-      concept: "En física, el Trabajo (W) ocurre cuando una fuerza (F) se aplica sobre un objeto desplazándolo una distancia (d). La fórmula W = F · d representa la transferencia de energía necesaria para mover una carga. En computación, la 'fuerza' es el voltaje y la 'distancia' es la cantidad de operaciones procesadas.",
-      equation: "W = F · d (Joules)",
-      justification: "Modelar el procesamiento como trabajo mecánico permite una gestión térmica eficiente. El software utiliza esta analogía física para cuantificar el costo real de una tarea, optimizando el rendimiento del hardware y prolongando la vida útil de los componentes electrónicos.",
-      visualLabel: "Simulación: Un pistón moviéndose verticalmente, representando la transferencia de energía por cada ciclo de procesamiento.",
+      caseStudy: "El Sistema Operativo monitorea constantemente el gasto energético de los procesos. Al ejecutar una tarea pesada, como el cifrado de archivos, el SO calcula el 'trabajo' de cómputo realizado para decidir si debe activar sistemas de enfriamiento o redistribuir la potencia entre los núcleos del procesador.",
+      concept: "El Trabajo Mecánico (W) se define como el producto de una fuerza (F) aplicada sobre un cuerpo y el desplazamiento (d) que este recorre en la dirección de la fuerza. La fórmula W = F · d · cos(θ) cuantifica la energía transferida al sistema. En computación, el trabajo se traduce directamente en consumo de vatios y generación de calor térmico.",
+      equation: "W = F · d · cos(θ)",
+      justification: "Modelar el procesamiento como trabajo físico permite una gestión de hardware eficiente. El software utiliza esta relación para cuantificar el costo energético de cada tarea, optimizando el rendimiento térmico y prolongando la integridad de los circuitos del procesador mediante un control preciso del consumo.",
+      visualLabel: "Un sistema de pistón realizando trabajo mecánico mediante el desplazamiento de una carga bajo una fuerza aplicada.",
       simulation: <Simulations.SimulationWork />
     },
     "Cons. Energía": {
       title: "Energía: Eficiencia en Dispositivos Móviles",
-      caseStudy: "La gestión de batería en un smartphone utiliza la conservación de energía para distribuir recursos. Si el usuario sube el brillo de la pantalla, el software debe 'quitar' energía del procesador o de las antenas de radio para que la suma total de energía consumida no exceda la capacidad de entrega de la batería.",
-      concept: "La Ley de Conservación de la Energía establece que la energía no se crea ni se destruye, solo se transforma. La Energía Mecánica total (E_mec) es la suma de la Cinética (Ec) y la Potencial (Ep). En un sistema cerrado como una batería, el gasto de una forma de energía debe ser compensado por otra.",
-      equation: "E_mec = E_c + E_p = Cte",
-      justification: "Esta ley permite que el software estime con precisión el tiempo de vida del dispositivo. Al entender que la energía es un recurso finito que se transforma en calor y luz, el software puede tomar decisiones inteligentes de ahorro sin que el usuario lo note.",
-      visualLabel: "Simulación: Un medidor de energía que oscila, mostrando cómo el recurso se consume y transforma dinámicamente.",
+      caseStudy: "La gestión inteligente de batería en smartphones utiliza el principio de conservación para optimizar recursos. Si el software detecta que la pantalla consume más energía, debe reducir automáticamente la potencia del procesador de fondo para que la energía total disponible en la batería se distribuya de forma eficiente.",
+      concept: "La Ley de Conservación de la Energía establece que la energía total de un sistema aislado permanece constante. La Energía Mecánica (Em) es la suma de la energía Cinética (Ec) y la Potencial (Ep). En un dispositivo, la energía química de la batería se transforma en luz, sonido y calor, pero la cantidad total antes y después de la transformación es la misma.",
+      equation: "E_mec = E_c + E_p = Constante",
+      justification: "Esta ley permite que el software estime el tiempo de vida del dispositivo. Al modelar la batería como un sistema de energía que se transforma continuamente, el software puede predecir el agotamiento del recurso y activar modos de ahorro críticos para el usuario antes de un apagado inesperado.",
+      visualLabel: "Un flujo de energía que se transforma entre diferentes estados, manteniendo el balance total del sistema.",
       simulation: <Simulations.SimulationEnergy />
     }
   },
   "Semana 5": {
     "Impulso": {
       title: "Impulso: Orientación de Micro-satélites",
-      caseStudy: "Los satélites CubeSat usan pequeños tanques de aire comprimido para girar en el espacio. Como no hay gravedad ni aire que los frene, el software debe calcular pulsos de milisegundos de duración para dar un 'empujoncito' exacto. Un pulso demasiado largo haría que el satélite gire sin control para siempre.",
-      concept: "El Impulso (J) es el cambio en la cantidad de movimiento (momentum) de un objeto. Se calcula multiplicando la Fuerza (F) por el intervalo de tiempo (Δt) que se aplica. Es la medida de cuánto cambia el estado de movimiento de un cuerpo tras una interacción rápida.",
+      caseStudy: "Los satélites de tipo CubeSat utilizan propulsores de gas frío para orientarse en el vacío. Como no existe resistencia del aire, el software debe calcular pulsos de fuerza extremadamente breves y precisos. Un 'empujón' incorrecto cambiaría el momento lineal del satélite de forma irreversible, dejándolo fuera de control.",
+      concept: "El Impulso (J) es el producto de la fuerza (F) aplicada y el intervalo de tiempo (Δt) de aplicación, lo que resulta en un cambio en la cantidad de movimiento (Δp). En el espacio, el impulso es la herramienta fundamental del software para corregir la trayectoria y la actitud de navegación de una aeronave.",
       equation: "J = F · Δt = Δp",
-      justification: "En el vacío del espacio, el impulso es la única forma de cambiar la dirección. El software depende de esta fórmula para garantizar que las maniobras sean precisas y no desperdicien el combustible limitado del satélite, asegurando el éxito de la misión.",
-      visualLabel: "Simulación: Un cuerpo lanzando un pulso de masa en una dirección y reaccionando con un movimiento opuesto.",
+      justification: "En el vacío, donde no hay fricción, el impulso es la única forma de modificar la dirección. El software depende de esta precisión física para garantizar que las maniobras consuman el mínimo de combustible posible, extendiendo la vida útil de la misión espacial mediante cálculos de momento exactos.",
+      visualLabel: "Un cuerpo en el vacío experimentando un cambio de velocidad tras la aplicación de un pulso de fuerza instantáneo.",
       simulation: <Simulations.SimulationImpulse />
     },
     "Colisiones": {
       title: "Colisiones: Pruebas de Seguridad en CAD",
-      caseStudy: "El software de diseño industrial simula colisiones de vehículos contra barreras. Al detectar el impacto, el programa calcula cómo se deforma el metal y cuánto rebota el auto. Estas colisiones son 'inelásticas' porque los objetos se quedan pegados o se deforman permanentemente en lugar de rebotar como pelotas de hule.",
-      concept: "En una Colisión Inelástica, los cuerpos chocan y pierden energía cinética, la cual se transforma en deformación y calor. La cantidad de movimiento se conserva, permitiendo calcular la velocidad final (vf) de los objetos tras el impacto uniendo sus masas (m1, m2).",
+      caseStudy: "El software de diseño industrial simula colisiones de vehículos contra estructuras rígidas para evaluar la seguridad de los pasajeros. Al detectar el impacto, el programa calcula la deformación de la carrocería y la pérdida de energía cinética, permitiendo predecir daños estructurales sin destruir prototipos físicos reales.",
+      concept: "En una Colisión Inelástica, los cuerpos chocan y pierden parte de su energía cinética original, la cual se transforma en calor y deformación permanente. Aunque la energía se transforma, la cantidad de movimiento se conserva, permitiendo al software predecir la velocidad final (vf) compartida por los objetos tras el impacto.",
       equation: "m1v1 + m2v2 = (m1+m2)vf",
-      justification: "La física de colisiones en software permite salvar vidas. Al simular choques digitalmente, los desarrolladores pueden identificar fallos estructurales en un diseño antes de que se fabrique el auto real, garantizando que el vehículo proteja a los pasajeros en un impacto real.",
-      visualLabel: "Simulación: Dos bloques impactando y deteniéndose mientras uno cambia su forma, ilustrando la pérdida de energía cinética.",
+      justification: "La simulación de colisiones salva vidas. Al integrar leyes de impacto inelástico, el software permite a los ingenieros diseñar zonas de deformación programada que absorban la energía del choque, protegiendo a los ocupantes antes de que el primer vehículo físico salga de la línea de ensamblaje.",
+      visualLabel: "Dos masas impactando y deformándose, ilustrando la conservación del momento y la disipación de energía cinética.",
       simulation: <Simulations.SimulationCollision />
     }
   }
