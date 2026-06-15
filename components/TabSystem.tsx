@@ -3,78 +3,87 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PhysicsCard from "./PhysicsCard";
+import * as Simulations from "./Simulations";
 
 const content = {
   "Semana 2": {
     "Movimiento 3D": {
-      title: "Cinemática en el Renderizado Volumétrico",
-      caseStudy: "Cálculo de trayectorias de partículas para simulación de niebla y efectos atmosféricos en motores gráficos.",
-      concept: "Posición y desplazamiento vectorial en el espacio tridimensional.",
-      equation: "r(t) = x(t)i + y(t)j + z(t)k",
-      justification: "La física permite calcular la posición exacta de miles de partículas en tiempo real, creando efectos visuales realistas que no serían posibles con sprites estáticos.",
-      visualLabel: "Trayectoria Vectorial"
+      title: "Cinemática 3D: Niebla Volumétrica",
+      caseStudy: "En motores gráficos como Unreal Engine, la niebla no es una imagen plana, sino un volumen compuesto por partículas. El software debe calcular la posición exacta de cada partícula de agua o polvo en un espacio de tres ejes (X, Y, Z) para que la luz se disperse correctamente. Si un personaje camina a través de ella, el software recalcula los vectores de posición para desplazar la niebla de forma realista.",
+      concept: "El movimiento en tres dimensiones describe la posición de un objeto usando un vector de posición 'r'. La fórmula r = xî + yĵ + zk utiliza 'î, ĵ, k' para representar las direcciones en los ejes X, Y y Z. Cada componente (x, y, z) es una coordenada que cambia con el tiempo para definir el desplazamiento.",
+      equation: "r(t) = x(t)î + y(t)ĵ + z(t)k",
+      justification: "Sin el cálculo de vectores en 3D, los entornos virtuales carecerían de profundidad. La cinemática permite que el software simule la tridimensionalidad del mundo real, logrando que objetos como la niebla reaccionen a la iluminación y al movimiento del jugador de manera coherente.",
+      visualLabel: "Simulación: Partículas moviéndose aleatoriamente en tres ejes, simulando la dispersión de un fluido gaseoso.",
+      simulation: <Simulations.Simulation3D />
     },
     "MCU": {
-      title: "Sincronización de Discos Giratorios",
-      caseStudy: "Control de latencia en la lectura de datos de sistemas de almacenamiento físico (HDD) mediante la velocidad angular constante.",
-      concept: "Movimiento Circular Uniforme y frecuencia de rotación.",
-      equation: "v = ω · R",
-      justification: "Comprender la relación entre la velocidad lineal y angular es crítico para posicionar el cabezal de lectura en el sector correcto del disco con precisión de milisegundos.",
-      visualLabel: "Rotación Constante"
+      title: "MCU: Velocidad de Giro en Discos HDD",
+      caseStudy: "Los discos duros mecánicos graban datos en sectores que rotan a miles de revoluciones por minuto. El software del controlador del disco debe sincronizar el momento exacto en que el cabezal baja a leer, basándose en qué tan rápido está girando el plato. Si la velocidad de giro varía, el software debe compensarlo para no leer el sector equivocado.",
+      concept: "El Movimiento Circular Uniforme (MCU) describe un objeto que recorre una trayectoria circular a una velocidad angular (ω) constante. La fórmula v = ω · R relaciona la velocidad lineal (v) con la velocidad angular y el radio (R). Aquí, 'v' es la rapidez con la que un punto del disco pasa bajo el cabezal.",
+      equation: "v = ω · R (Donde ω = rad/s)",
+      justification: "El MCU es fundamental para la integridad de los datos. Permite al software predecir la posición temporal de un bit de información. Sin esta ley física, el acceso a la información sería caótico, ya que el sistema no tendría una referencia temporal fija para la rotación del hardware.",
+      visualLabel: "Simulación: Un plato girando a velocidad angular constante, destacando un punto (sector de datos) en rotación.",
+      simulation: <Simulations.SimulationMCU />
     }
   },
   "Semana 3": {
     "F. Centrípeta": {
-      title: "Navegación de Drones Autónomos",
-      caseStudy: "Algoritmos de control para drones de entrega que deben realizar giros cerrados sin perder estabilidad o desviarse de la ruta.",
-      concept: "Fuerza Centrípeta necesaria para mantener una trayectoria curva.",
-      equation: "Fc = m · v² / R",
-      justification: "El software de vuelo debe calcular la inclinación necesaria del dron para generar la fuerza centrípeta requerida, evitando que la inercia lo desplace fuera de su trayectoria.",
-      visualLabel: "Aceleración Radial"
+      title: "Dinámica: Estabilidad en Curvas de Drones",
+      caseStudy: "Cuando un dron autónomo realiza un giro para evitar un obstáculo, el software debe inclinar el chasis del dron. Esta inclinación redirige parte del empuje de los motores hacia el centro de la curva, generando la fuerza necesaria para que el dron no siga recto por inercia y se salga de su trayectoria.",
+      concept: "La Fuerza Centrípeta (Fc) es la fuerza resultante que actúa sobre un cuerpo en movimiento circular, dirigida hacia el centro. Se calcula como Fc = m · v² / r, donde 'm' es la masa, 'v' la velocidad y 'r' el radio de giro. Es la fuerza que 'tira' del dron hacia adentro de la curva.",
+      equation: "Fc = m · v² / r",
+      justification: "La física resuelve el problema del control de trayectoria. Si el software no calculara la Fc necesaria basándose en la velocidad y el radio del giro, el dron derraparía en el aire, siendo incapaz de seguir rutas precisas en entornos urbanos o cerrados.",
+      visualLabel: "Simulación: Un objeto en órbita con una flecha central que representa la fuerza constante que lo mantiene en su ruta.",
+      simulation: <Simulations.SimulationCentripetal />
     },
     "Fricción": {
-      title: "Inercia de Desplazamiento en UI",
-      caseStudy: "Simulación de la fricción cinética en el 'scrolling' inercial de aplicaciones móviles para crear una sensación táctil natural.",
-      concept: "Fuerza de fricción como deceleración de un cuerpo en movimiento.",
-      equation: "f = μ · N",
-      justification: "El uso de la física real en interfaces (fricción) mejora drásticamente la experiencia del usuario al imitar el comportamiento del mundo físico, haciendo la navegación intuitiva.",
-      visualLabel: "Deceleración Cinética"
+      title: "Fricción: Inercia de Frenado en UI",
+      caseStudy: "En las interfaces móviles, el 'scroll' imita el comportamiento de un objeto real deslizándose sobre una mesa. Cuando lanzas una lista de contactos hacia arriba, el software aplica un algoritmo de fricción que reduce la velocidad gradualmente hasta detenerla, evitando un paro brusco que resultaría molesto al ojo humano.",
+      concept: "La Fricción Cinética (fk) es la fuerza que se opone al movimiento de un objeto que ya se está deslizando. Se define como fk = μk · N, donde 'μk' es el coeficiente de roce y 'N' la fuerza normal. En software, μk determina qué tan 'pesada' o 'lisa' se siente la interfaz al tacto.",
+      equation: "f_k = μ_k · N",
+      justification: "La fricción simulada humaniza la tecnología. Al aplicar leyes físicas de roce, el software logra que la interacción sea predecible y cómoda. Sin esto, las listas de datos se detendrían instantáneamente, rompiendo la ilusión de fluidez y naturalidad táctil.",
+      visualLabel: "Simulación: Un bloque deslizándose sobre una superficie que pierde velocidad progresivamente hasta detenerse.",
+      simulation: <Simulations.SimulationFriction />
     }
   },
   "Semana 4": {
     "Trabajo": {
-      title: "Esfuerzo de Cómputo en CPUs",
-      caseStudy: "Optimización de la carga de trabajo en procesadores multinúcleo para minimizar el consumo de energía durante la ejecución de hilos pesados.",
-      concept: "Trabajo realizado por una fuerza a lo largo de un desplazamiento (metáfora de carga).",
-      equation: "W = F · d · cos(θ)",
-      justification: "Modelar el procesamiento como 'trabajo físico' permite a los planificadores de tareas del SO distribuir la carga de manera que se maximice la eficiencia energética por cada ciclo de reloj.",
-      visualLabel: "Transferencia de Energía"
+      title: "Trabajo: Gestión de Carga en CPUs",
+      caseStudy: "El Sistema Operativo monitorea el gasto energético de cada aplicación. Si un software de edición de fotos aplica un filtro a millones de píxeles, el SO calcula el 'trabajo' de cómputo para decidir si activa los ventiladores o reduce la potencia del chip para evitar daños por calor.",
+      concept: "En física, el Trabajo (W) ocurre cuando una fuerza (F) se aplica sobre un objeto desplazándolo una distancia (d). La fórmula W = F · d representa la transferencia de energía necesaria para mover una carga. En computación, la 'fuerza' es el voltaje y la 'distancia' es la cantidad de operaciones procesadas.",
+      equation: "W = F · d (Joules)",
+      justification: "Modelar el procesamiento como trabajo mecánico permite una gestión térmica eficiente. El software utiliza esta analogía física para cuantificar el costo real de una tarea, optimizando el rendimiento del hardware y prolongando la vida útil de los componentes electrónicos.",
+      visualLabel: "Simulación: Un pistón moviéndose verticalmente, representando la transferencia de energía por cada ciclo de procesamiento.",
+      simulation: <Simulations.SimulationWork />
     },
     "Cons. Energía": {
-      title: "Gestión Térmica en Dispositivos",
-      caseStudy: "Redistribución inteligente de recursos en dispositivos móviles para conservar la energía potencial de la batería durante picos de uso.",
-      concept: "Ley de Conservación de la Energía Mecánica.",
-      equation: "Em = Ec + Ep = Constante",
-      justification: "El software de gestión de energía utiliza modelos de conservación para predecir cuánto tiempo puede durar la batería basándose en la tasa de transferencia de energía actual.",
-      visualLabel: "Balance Energético"
+      title: "Energía: Eficiencia en Dispositivos Móviles",
+      caseStudy: "La gestión de batería en un smartphone utiliza la conservación de energía para distribuir recursos. Si el usuario sube el brillo de la pantalla, el software debe 'quitar' energía del procesador o de las antenas de radio para que la suma total de energía consumida no exceda la capacidad de entrega de la batería.",
+      concept: "La Ley de Conservación de la Energía establece que la energía no se crea ni se destruye, solo se transforma. La Energía Mecánica total (E_mec) es la suma de la Cinética (Ec) y la Potencial (Ep). En un sistema cerrado como una batería, el gasto de una forma de energía debe ser compensado por otra.",
+      equation: "E_mec = E_c + E_p = Cte",
+      justification: "Esta ley permite que el software estime con precisión el tiempo de vida del dispositivo. Al entender que la energía es un recurso finito que se transforma en calor y luz, el software puede tomar decisiones inteligentes de ahorro sin que el usuario lo note.",
+      visualLabel: "Simulación: Un medidor de energía que oscila, mostrando cómo el recurso se consume y transforma dinámicamente.",
+      simulation: <Simulations.SimulationEnergy />
     }
   },
   "Semana 5": {
     "Impulso": {
-      title: "Propulsión de Micro-satélites",
-      caseStudy: "Sistemas de control para CubeSats que utilizan pulsos de gas para corregir su orientación en el espacio.",
-      concept: "Impulso y cambio en la cantidad de movimiento.",
+      title: "Impulso: Orientación de Micro-satélites",
+      caseStudy: "Los satélites CubeSat usan pequeños tanques de aire comprimido para girar en el espacio. Como no hay gravedad ni aire que los frene, el software debe calcular pulsos de milisegundos de duración para dar un 'empujoncito' exacto. Un pulso demasiado largo haría que el satélite gire sin control para siempre.",
+      concept: "El Impulso (J) es el cambio en la cantidad de movimiento (momentum) de un objeto. Se calcula multiplicando la Fuerza (F) por el intervalo de tiempo (Δt) que se aplica. Es la medida de cuánto cambia el estado de movimiento de un cuerpo tras una interacción rápida.",
       equation: "J = F · Δt = Δp",
-      justification: "El software debe calcular pulsos extremadamente precisos (fuerza por tiempo) para lograr cambios mínimos en la orientación sin desperdiciar combustible limitado.",
-      visualLabel: "Momento Lineal"
+      justification: "En el vacío del espacio, el impulso es la única forma de cambiar la dirección. El software depende de esta fórmula para garantizar que las maniobras sean precisas y no desperdicien el combustible limitado del satélite, asegurando el éxito de la misión.",
+      visualLabel: "Simulación: Un cuerpo lanzando un pulso de masa en una dirección y reaccionando con un movimiento opuesto.",
+      simulation: <Simulations.SimulationImpulse />
     },
     "Colisiones": {
-      title: "Simuladores de Impacto (CAD)",
-      caseStudy: "Detección de colisiones inelásticas en software de ingeniería para simular la deformación de materiales en accidentes automotrices.",
-      concept: "Colisión Inelástica donde la energía cinética no se conserva.",
+      title: "Colisiones: Pruebas de Seguridad en CAD",
+      caseStudy: "El software de diseño industrial simula colisiones de vehículos contra barreras. Al detectar el impacto, el programa calcula cómo se deforma el metal y cuánto rebota el auto. Estas colisiones son 'inelásticas' porque los objetos se quedan pegados o se deforman permanentemente en lugar de rebotar como pelotas de hule.",
+      concept: "En una Colisión Inelástica, los cuerpos chocan y pierden energía cinética, la cual se transforma en deformación y calor. La cantidad de movimiento se conserva, permitiendo calcular la velocidad final (vf) de los objetos tras el impacto uniendo sus masas (m1, m2).",
       equation: "m1v1 + m2v2 = (m1+m2)vf",
-      justification: "La física de colisiones permite predecir el daño estructural en modelos digitales antes de fabricar prototipos físicos, ahorrando millones en costos de desarrollo.",
-      visualLabel: "Deformación Plástica"
+      justification: "La física de colisiones en software permite salvar vidas. Al simular choques digitalmente, los desarrolladores pueden identificar fallos estructurales en un diseño antes de que se fabrique el auto real, garantizando que el vehículo proteja a los pasajeros en un impacto real.",
+      visualLabel: "Simulación: Dos bloques impactando y deteniéndose mientras uno cambia su forma, ilustrando la pérdida de energía cinética.",
+      simulation: <Simulations.SimulationCollision />
     }
   }
 };
@@ -130,12 +139,24 @@ export default function TabSystem() {
         </div>
       </nav>
 
-      <div className="relative min-h-[600px] flex items-center justify-center pt-8">
-        <AnimatePresence mode="wait">
-          <PhysicsCard
+      <div className="relative min-h-[500px] w-full max-w-4xl mx-auto pt-8">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
             key={`${activeWeek}-${activeSubject}`}
-            {...(content[activeWeek as keyof typeof content] as any)[activeSubject]}
-          />
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -10 }}
+            transition={{ 
+              type: "spring",
+              stiffness: 300,
+              damping: 30
+            }}
+            className="w-full"
+          >
+            <PhysicsCard
+              {...(content[activeWeek as keyof typeof content] as any)[activeSubject]}
+            />
+          </motion.div>
         </AnimatePresence>
       </div>
     </div>

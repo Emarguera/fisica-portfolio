@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import React from "react";
 
 interface PhysicsCardProps {
   title: string;
@@ -9,6 +10,7 @@ interface PhysicsCardProps {
   equation: string;
   justification: string;
   visualLabel: string;
+  simulation: React.ReactNode;
 }
 
 export default function PhysicsCard({
@@ -18,14 +20,10 @@ export default function PhysicsCard({
   equation,
   justification,
   visualLabel,
+  simulation,
 }: PhysicsCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      className="card-apple w-full max-w-4xl mx-auto space-y-8"
-    >
+    <div className="card-apple w-full space-y-8">
       <div className="space-y-2">
         <h2 className="text-3xl font-bold tracking-tight text-white">{title}</h2>
         <div className="h-1 w-12 bg-blue-500 rounded-full" />
@@ -55,21 +53,13 @@ export default function PhysicsCard({
         <div className="flex flex-col items-center justify-center space-y-4">
           <div className="w-full aspect-square glass rounded-3xl flex items-center justify-center relative overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent" />
-            <span className="text-gray-500 text-sm font-medium uppercase tracking-widest">{visualLabel}</span>
-            <motion.div 
-              animate={{ 
-                scale: [1, 1.1, 1],
-                opacity: [0.3, 0.6, 0.3] 
-              }}
-              transition={{ repeat: Infinity, duration: 4 }}
-              className="absolute inset-0 flex items-center justify-center"
-            >
-              <div className="w-32 h-32 rounded-full border border-blue-500/20" />
-            </motion.div>
+            <div className="w-full h-full flex items-center justify-center relative z-10">
+              {simulation}
+            </div>
           </div>
-          <p className="text-xs text-gray-500 italic">Visualización del concepto físico aplicado</p>
+          <p className="text-xs text-gray-500 italic">Elemento de Apoyo: {visualLabel}</p>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
