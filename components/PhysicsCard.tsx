@@ -23,7 +23,7 @@ export default function PhysicsCard({
   simulation,
 }: PhysicsCardProps) {
   return (
-    <div className="card-apple w-full space-y-8">
+    <div className="card-main w-full space-y-8">
       <div className="space-y-2">
         <h2 className="text-3xl font-bold tracking-tight text-white">{title}</h2>
         <div className="h-1 w-12 bg-blue-500 rounded-full" />
