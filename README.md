@@ -7,7 +7,7 @@
 
 ---
 
-##  Descripción del Proyecto
+## Descripción del Proyecto
 Este proyecto es un portafolio digital interactivo diseñado para documentar y demostrar la aplicación práctica de los principios de la física mecánica en el desarrollo de software moderno. El sitio utiliza una estética minimalista inspirada en los sistemas operativos de Apple para presentar de forma clara y profesional los conceptos evaluados durante el primer avance del curso.
 
 ## 🛠 Tecnologías Utilizadas
